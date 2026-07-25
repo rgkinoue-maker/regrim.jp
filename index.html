@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REGRIM | 株式会社レグリム</title>
+<meta name="description" content="株式会社REGRIM - OEMアニメーション制作スタジオ / Anime Production Studio">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<!-- OGP -->
+<meta property="og:title" content="REGRIM | 株式会社レグリム">
+<meta property="og:description" content="つくる力で、アニメを支える。OEMアニメーション制作スタジオ">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://regrim.jp">
+<meta property="og:image" content="https://regrim.jp/ogp.jpg">
+<meta property="og:site_name" content="株式会社REGRIM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="REGRIM | 株式会社レグリム">
+<meta name="twitter:description" content="つくる力で、アニメを支える。OEMアニメーション制作スタジオ">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --accent: #9bc200;
+    --gray: #888;
+    --light-gray: #f5f5f5;
+    --border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 70px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    text-decoration: none;
+    font-style: italic;
+  }
+  .logo span { color: var(--accent); }
+
+  nav { display: flex; align-items: center; gap: 0; }
+  nav a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    padding: 0 18px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s, background 0.2s;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  nav a:first-child { border-left: 1px solid rgba(255,255,255,0.06); }
+  nav a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+
+  .lang-switcher {
+    display: flex;
+    gap: 4px;
+    margin-left: 20px;
+  }
+  .lang-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.6);
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .lang-btn:hover, .lang-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    background: #070711;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, 
+      rgba(7,7,17,0.2) 0%, 
+      rgba(7,7,17,0.05) 50%,
+      rgba(7,7,17,0.5) 100%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+  }
+
+  .hero-logo {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    font-style: italic;
+    margin-bottom: 16px;
+    text-shadow: 0 0 60px rgba(232,0,29,0.4);
+  }
+  .hero-logo span { color: var(--accent); }
+
+  .hero-tagline {
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: '';
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ========== SECTIONS ========== */
+  section { padding: 100px 60px; }
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .section-en {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .section-jp {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--gray);
+  }
+  .accent-line {
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    margin: 16px auto 0;
+  }
+
+  /* ========== NEWS ========== */
+  #news { background: var(--white); }
+
+  .news-list { max-width: 860px; margin: 0 auto; }
+  .news-item {
+    display: flex;
+    align-items: baseline;
+    gap: 30px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: padding-left 0.2s;
+  }
+  .news-item:hover { padding-left: 10px; }
+  .news-item:first-child { border-top: 1px solid var(--border); }
+
+  .news-date {
+    font-size: 12px;
+    color: var(--gray);
+    white-space: nowrap;
+    font-family: 'Courier New', monospace;
+  }
+  .news-tag {
+    font-size: 10px;
+    padding: 3px 10px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    white-space: nowrap;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+  }
+  .news-title {
+    font-size: 14px;
+    flex: 1;
+  }
+
+  .btn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 50px;
+    padding: 14px 36px;
+    border: 2px solid var(--black);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    color: var(--black);
+    transition: all 0.3s;
+  }
+  .btn-more:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+  .center { text-align: center; }
+
+  /* ========== WORKS ========== */
+  #works { background: var(--black); color: var(--white); }
+  #works .section-en { color: var(--white); }
+
+  .works-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .works-table thead th {
+    text-align: left;
+    padding: 10px 16px;
+    background: rgba(155,194,0,0.15);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(155,194,0,0.3);
+  }
+  .works-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+  .works-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+  .works-table td {
+    padding: 13px 16px;
+    color: rgba(255,255,255,0.85);
+    vertical-align: middle;
+  }
+  .works-table td:first-child {
+    width: 90px;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .works-table td:last-child {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+  }
+  .works-table tr.wf-hidden { display: none; }
+
+  #works .btn-more {
+    border-color: var(--white);
+    color: var(--white);
+  }
+  #works .btn-more:hover {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  /* ========== ABOUT ========== */
+  #about { background: var(--light-gray); }
+  .about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-text h3 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .about-text p {
+    color: #444;
+    line-height: 2;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .about-info table { width: 100%; border-collapse: collapse; }
+  .about-info tr { border-bottom: 1px solid var(--border); }
+  .about-info td {
+    padding: 16px 8px;
+    font-size: 13px;
+    vertical-align: top;
+  }
+  .about-info td:first-child {
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--gray);
+    width: 40%;
+    letter-spacing: 0.05em;
+  }
+
+  /* ========== RECRUIT ========== */
+  #recruit { background: var(--white); }
+  .recruit-content { max-width: 860px; margin: 0 auto; }
+  .recruit-intro {
+    text-align: center;
+    font-size: 15px;
+    line-height: 2.2;
+    margin-bottom: 60px;
+    color: #444;
+  }
+
+  .recruit-positions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .recruit-card {
+    border: 2px solid var(--border);
+    padding: 32px;
+    transition: border-color 0.2s;
+  }
+  .recruit-card:hover { border-color: var(--accent); }
+  .recruit-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .recruit-card p { color: var(--gray); font-size: 13px; line-height: 1.9; }
+  .recruit-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ========== CONTACT ========== */
+  #contact { background: var(--black); color: var(--white); }
+  #contact .section-en { color: white; }
+  .contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-content p {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    line-height: 2;
+    font-size: 14px;
+  }
+
+  .contact-form { text-align: left; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    padding: 14px 16px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: inherit;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+  .form-group select option { background: #1a1a1a; }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .btn-submit {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+  }
+  .btn-submit:hover { background: #7a9a00; }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: #050505;
+    color: rgba(255,255,255,0.4);
+    padding: 60px 60px 30px;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  .footer-logo {
+    font-size: 28px;
+    font-weight: 900;
+    font-style: italic;
+    color: white;
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-desc { font-size: 12px; line-height: 2; color: rgba(255,255,255,0.4); }
+
+  .footer-nav h5 {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .footer-nav a {
+    display: block;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    font-size: 12px;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-nav a:hover { color: white; }
+
+  .footer-sns { display: flex; gap: 14px; margin-top: 20px; }
+  .sns-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+  .sns-icon:hover { border-color: var(--accent); color: var(--accent); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ========== LANG CONTENT ========== */
+  [data-lang] { display: none; }
+  [data-lang].active { display: block; }
+  [data-lang-inline] { display: none; }
+  [data-lang-inline].active { display: inline; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .works-table td { padding: 10px 12px; font-size: 13px; }
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 0 16px; height: 56px; }
+    nav { display: none; }
+    .lang-switcher { gap: 2px; }
+    .lang-btn { font-size: 9px; padding: 3px 6px; }
+    .hero { height: 100svh; }
+    .hero-logo img { height: 80px !important; }
+    section { padding: 60px 20px; }
+    .section-en { font-size: 32px; }
+    .works-table { font-size: 12px; }
+    #works > div { padding: 0 20px 20px; }
+    .about-content { grid-template-columns: 1fr; gap: 32px; }
+    .about-text h3 { font-size: 28px; }
+    .about-info td { padding: 10px 8px; font-size: 13px; }
+    .recruit-positions { grid-template-columns: 1fr; }
+    .contact-form { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; gap: 32px; }
+    .footer-links { flex-direction: column; gap: 12px; }
+    .news-item { flex-direction: column; gap: 6px; padding: 14px 0; }
+    .news-date { font-size: 11px; }
+    .news-tag { font-size: 9px; padding: 2px 8px; }
+    .section-header { margin-bottom: 40px; }
+    .hero-scroll { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .works-table td { padding: 8px 10px; font-size: 11px; }
+    .section-en { font-size: 26px; }
+    section { padding: 50px 16px; }
+  }
+
+  /* ===== LOADING SCREEN ===== */
+  #loading-screen {
+    position: fixed; inset: 0; background: #06060f;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; transition: opacity 0.7s ease, visibility 0.7s ease;
+  }
+  #loading-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+  #loading-screen img {
+    height: 90px; width: auto;
+    animation: loadPulse 1.1s ease-in-out infinite;
+  }
+  @keyframes loadPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.93); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  /* ===== BACK TO TOP ===== */
+  #back-to-top {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 44px; height: 44px;
+    background: var(--accent); color: #000; border: none;
+    font-size: 20px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, background 0.2s;
+  }
+  #back-to-top.visible { opacity: 1; visibility: visible; }
+  #back-to-top:hover { background: #b5e000; }
+
+  /* ===== WORKS FILTER ===== */
+  .works-filter {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    justify-content: center; margin-bottom: 36px;
+  }
+  .filter-btn {
+    padding: 6px 18px; border: 1px solid #333; background: transparent;
+    color: #666; font-size: 12px; letter-spacing: 0.1em;
+    cursor: pointer; transition: all 0.2s; font-family: inherit;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active {
+    background: var(--accent); border-color: var(--accent);
+    color: #000; font-weight: 700;
+  }
+  .works-table tr.wf-hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <img src="data:image/png;base64,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" alt="REGRIM" style="filter:drop-shadow(0 0 30px rgba(155,194,0,0.6));">
+</div>
+
+<!-- HEADER -->
+<header>
+  <a class="logo-img" href="#" style="display:flex;align-items:center;text-decoration:none;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhoAAAFFCAYAAACqiUSZAAAVq0lEQVR4nO3dfZBU5Zko8KcF/BpdREWIQaUdyIouJBE3JIO4I4HCq6FqKPDiRFFqoxZVWWpTkq0KScwfcTekalcrW6x1rdWkJhkVFClmy49NSh3nSiQxq2yCG/FexcGvxAlGJOugkcGzfwxDAKeb6Z5zenqmf79/HKvpt8/M6dPn6ed53+eNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDakRvqAyB7t9/dnNSN+8NQH0bJfvPi6Qd/3v7LPfHuO+/FprafeM9mbG5jQ/LxyWfEGR+ri9MmjI6IiPFnvRtjjn//qM/tO2fvdSex88U/xBs7fxftHVucM6hhPgBqwKrVVyezlmwY6sNIzd4358fbb5wa//+5D+LRh36R29HZOdSHNGwtalqQnDvt9Dj3gg+jbtwf4sSJj2byOn3n7I3OD+M/f9Yp+IAa4mKvEeuevCgZVbdtqA8jE/t2z44Xnj4r7r1rs6DjKOrz+Wi6qiE594IPY/zUn0aM7hqS49i3e3Z0vTwpNj/yO1kqGOFc4DVipGU1Ctm1fXH8/LH3orWlzXv7gL7g4ryL3o+xkx8c6sP5iP3dM6Jz6wXxWNuLMh0wArmoa8hIzmocae+b8+PxDWNqOuCY29iQLL7+nCHNXJRq1/bFsfGuVwQcMIK4mGtIrWQ1DrX3zfnxo3/cXVM3roMBxrSNQ30oZRNwwMjhIq4x9zx2aTJm3FNDfRiV1TMhnnvs0rjlGz8a0e/3kRBgHKZGzhuMdC7gGrNseVOycOUjQ30YQ2LPzoXx3a9uHZETRr/zveuSKZ9rHzYlklLsfXN+3PI3z4/I8wa1QKBRg1oeviLJahljtdu3e3Z864adI+amtahpQbLkbz6IkZ6l2t89I+6/7TQrVGAYOmaoD4DKe3zDmKE+hCEzZtxT8e07Jyf1+fxQH8qgrVp9ddK8+vkRH2RERIyq2xbNq5+PRU0LkqE+FqA0vh3UqFrOakT0ZjaunvfEsH3/3/avy5JJM+8b6sOouP3dM+Kb1/1+xGSkoBbIaNSoWs5qRPRmNm7712XD8tvx7Xc312SQEdGb2bj5X84flucNapVAo0a1trTl9uxcONSHMaQmzbwvli1vGlY3rdvvbk5GzKqSMp048dFYtfrqYXXeoJYN29Qxgze3sSG59u/GDfVhfMSJp2+r2OqJvW/Oj+VXPDwsroOhCDL2vjk/fvPi6fHqjvej+7//+JFN0g7dgO3j+WNiwrmvV2TOyP7uGdF8yTPD4rxBrXOhUrWWLW9KPt1wckz6ZEemgce6Wy6t+tUMlZyTsW/37Nj6+JnRtn5LWXMh6vP5+OL1c5Lz5zwfWXaiHQ7nDRBoMAzU5/Px5dUXZ3ajff3ZpXHTja1Vey2sWLk0mbt8U+avk3bb9qzP20ubm+PrX/lh1Z43oJc5GlS9HZ2dcdONrbmnH7gyk/EnnPt6JuOmoT6fj7nXbMn2RXomRHvLolh+xcO5NPeG6TtvL21uTmvIw4w9/YNMxgXS5dsAh6nP56Phrz6Z+kS7tG5gWZUQ/vfMD6ryWrhz4+Ikyx1X9+2eHd//+z9mvqdIFhv6Daf5NVDLRg/1AVBdvvS3lyRT5qxLdcz93TOitSWdsR66d0esmJnOWIda1LQgqbZ6/7LlTZkGGZVsyf7Mv/95zFpSGzsHA4cTaHCY/IW/Tn3M5zefHxHPpDJWe8eW3Io4NvWMy0mnnJD2kIP2+Sv3ZTb2vt2z44bFGysWWLWt35KbtSQGdd72vjk/3n7j1Hij88N4eftbsalNNgOGA4EGB61YuTQZVZf+pMOnHn0ptbF6W1A/kdp4fd7Y+bvUxxyMZcubkhMnZrP53f7uGfGtG3ZW9CbdmzU5dsD//qNBxU9yEQ9nd4BAZgQaHDSzsSf1MffsXBjtHel9c7582UlpDXWYrOcolOqz87LLsDzyg0mxozOdDFMaBBUwsgk0iIjexktZzAd4tiO9t9jtdzcnYyen37Bq3+7ZkUWWpFz1+Xxk1Zhr1/bF0dqyruJB1YqVS5OITYIKqEECDSIiYvb8KZHWPIo++7tnxB1r7xv0TW3Z8qbksmv2xJhx2dx8X3j6rEzGLVfTVQ1JxIZMxt541yuZjHs0d6y9L3fH2ghBBdQegQYREXH+nOdTH7Nz6wVRTvCyqGlBctIpJ8S0T42Nc/7i1RgzLpu5Cn2KzSG5c+PiZMzx76f+mv92Z0/BrpbnXvBh6q8XkX4Zq9KWLW9KJk/9s5h4zr54+dfHxK1r7un3d1mxcmny2cveTeU1337j1Hh/b2+7oVd3vB9dr72TWjfS2+9uTurG/aHk5/3oH3f3W+r7zveuS86c+lbJ4/38xycN+gtBfT4fX/unC8u+VixTHtkEGsSy5U3JqLr0b+ZT5qyL+58tZ4VI5coYu7YvjvaO/ksJi5oWZLa8dNuvPl7wg/XUs1/M5DVfeOb4TMZNW9/+KdM+NTbGn/VunDT+lQOtzP/0Hn3sgUsLPn9mY0+cOPHRVI7lxIl/+nnKnN7/Nq8+K9nz+mfihWeOLxjsHM3cxoay9q3Z3z0j2jv63+Nlyufay2rVP7NxYcTakp92UH0+H9++c3IyZlx510pv6ZKRTKBBphMPq1rPhKKlhDmXn5HJy+7vnlFwMmZ9Pp/Z/iBt66trwmtEbzA34axT4uz64+PMqW8d2FCveBZsf/eMglmF+nw+suw9EhERo7ti7OQHY9bkiPubzkpe+tnckluhl1uq/O0L0/p93oqVS5MYXd6KsbGTflHW8yIODTLK30iv2kqXpE+gUeOynHhY7Z5uuyTaOwp/I/3Yedszed0//veEgo/1dmV9I/XXLBbcVEpf6WPc+CRO/fjbB7IOpWevCt1sI7Kd39Kv0V0xZc66WPfkRcn9t5024LLKebNeK+vlNj/S/zLs6bMGsZvE6K5YsXJpUmr5JI0gIyLd5e9UJ4FGjav4B3OV2LV9cdG096KmBcmoumxKOG+/cWrBx+pOPi6T1ywW3KStr439tE+NjbGnfxCnTHzzwNbx6ZTnCt1sIyLOuyj9+TQDMapuWzSvnhARR+8wO7exoaybc7FMzvipPy15vENNn3VMSeWTtIKMfbtnR3vHE1WXaSNdAo0ad+HnfzPUh1Bxu7Yvji9fU3yJZ1Zlk4g4OLmwP2fXZzOPYt/72Yw7t7Eh+cT0sw6WPo47uetA6Sf9rExEFZRNihndFc2rI7b9Kh/F2rpXU9mkTynzgtIKMiKUTWqFQKOGLWpakIwZVz39IyphIEFGRHZlk6Gy67V0Gp2tWLk0+cT0Yw8pfTwTaS+LLqaqyib9Gd0VN92yOPnyNZ0F32NVVTY5YFTdtgHt95NmkBGhbFIrbBNfw+YtKZzCH4me+/FVAwoyessmI2sDsHKWPfbn0Yd+kYuI1FZ1lOqhe3cUfGyoyiZHKlbGSLtsUp/PD7ps0ucvGycWfTztIKO3bFJ9E5RJn4xGDUvrA6ra7ds9Ox74l2NjU9uPBvShVm7ZZM/OhQPKHGz/5Z6yxh+M404ufdljf3Z0dsZNN3bm5jY2JNf+3biKBhzF6vnllk32d8+IR34wqd/HPt1wckyaeV/JY8boroLZgbTLJk1XNSQxOp0szjl/8WrBx9IOMiKUTWqJQKNGrVp9dWofUFWrZ0KUs/Sw3LLJurW/HfQ3tO2/3HOwX0OaRtVti7mNDUla3yDbO7bk2jt6V5Jc/tevZ7Yk91DFbkxfvH5OErG+5DF/+8K0aG1p7fdv0toSse7Ji8rKbhXaDTjtskmaWZwx457q9z2SRZARoWxSSwQaNWr6xe8M9SFk50CA8f1/fjK3o/OHJT217NUmPRNiXtPUmNc09agNyn7f1VNwxUuWu8guvv6caO/YkuqYrS1tudaW3sB1VtOTZTWMGqhiN6a0b+ARg1t51NrS9pHzm0XZJO3Jr7PnTznsPZJVkGG1SW0RaNSguY0NyVDV2LO0b/fs2Pr4mdG2fkvJAUafslebHOinMBBTIiLW9P9Ye8eW3Iqes5Isbtjjp20sq1/CQNy65p5c/fp83HTL4rI6Xh5NsRtT2jfwRU0LkjmXnxGTPtlR+oFG4U36MimbpDz59ezzug/+nFWQEaFsUmsEGjXoC1+sj0quFKiUrY+fWXZL6D6VWm2ybHlT0t+33oiIXS9enFkTtbnXbImu146+uqAc87/wmSSreT/Fbkzl3sBH1W0r0CJ/cCuxNv9b/8FqNZdN+oyd/GDU5/MREZkFGRHKJrXGqpMaNNKWbvaZtWRD79yTMlVytcmnG04u+NjPH3svuxce3RXNNz8RN//DtWX/nY40t7EhaXn4imTu8k2ZlU6yKJtkYc/Ohf1uUDYcyiZ9mq5qSLIMMqw2qT0yGjVmxcqlyai6wTX36c9Lm5vLet5Ayw0DNWvJhlgVVyflZDaybNJ1pGLBXmtLW+7yvy5vEuJATb9sfaybc1Hy/Obz4967NueKNZjqz9zGhuTTn8vH9IvfyXzlSRZlkyzs2z07vvvVrf0e53Aom/SZtSTbSeLKJrVHoFFjZjb2pD7mru2LS17Z0WfV6quTtD/YZjU9GYu2l14eqGSmZ1Tdtli1unBA9MgPJsXCldlmV0bVbYvpl22LNZdFsm/3pdH18qR4f+8x/S6/nTz1z+KEutwhu6lWrlFXFmWTtO3ZuTC++9WtBQO24VA2qRRlk9oj0KghcxsbMtn2/LmnPyz7ubeuuSe3KlIONg60gh7IvhN9stzbpJCL/tf/KzgptLWlLXfJwsWZbVN/pDHjnopJM3t/zmJ57WBUddmkZ0I899ilccs3CvdoGU5lk6xZbVKbzNGoIfOapqY+5v7uGf3WpEtx65p7ck8/cGVah9RrdFc0r34+FjUtGNBchEqWTfqMqttWdK7Ed7+6Nbe/e0YlD6nqFKvnD2XZZH/3jHjux1fF6qtG54oFGRF9WZfS9ZZNPqq3bDI8KZvUJhmNGpK/8Nepj9m59YJII3V965p7crfllyVldWIs5EBmY887R29UVW7Z5MG1l5f1vD7vvlN48uSOzs64/7ZP9O4KmmF/impWjWWTP+2XM7DXroqySU91vIeUTWqTQKNGLFvelIyqS2eb7kM91jbwXR+P5qYbW3O3392cbh+G0V3xpW9OiVdeKbyjZrllkz07F0Zry8ZM08C9qfMFSfPqqIobRaVlUTbZ++b8iIgYc9zeKCcjMn7qTwfcZbVayibPPXZpTL+s9M6phezvnlFyN1hlk9ol0KgRn53Xf0vkwdizc2G0d6R7o/3yNetSDzbGjHsqvn3n7ORbN0S/k/XKLZuMOf79+M73rksljf1ed1Kwzl+rwUZWTbqWX/HwwTHLajE+uisWX3/xgLqsVstqk3vv2pz72nkLU5nz8/QDV/bOLyqRskntEmjUgPp8PpMGUC88c3zqY0ZUPtgot2xy4sRHY0rxDS9LcnNcmxQLNva805B86ZtTyvoWPhxlUTY58gb+zL//ecxaUvrqnvHTNhZtutanGsome3YujB2dG+PVF+bE9MllHc5BTz9wZby8/a2y/mbKJrXLZNAa0LvhVMp6Jgy6C2cxt93881xvK+f0jBn3VHztny487G9RTVvCT79sfdGGY+0dW3JXz3siV27PkuGmEnub3LrmnrIn3H7+yn1FH6+WsknfF4LB3uiffuDKuHXNPblyMoCadNU2gUYNyGIJ4Ou/akx9zEPt6OyMb92wM/VgY+zkB+P2u5sP3syHYrVJMbOWbDjs+Prz9a/8MHfHqosOzjUYibJYbVLoBv5/N9SXcYS9Ga0VK5cWPFfVstqkbX3v37G9Y0vZ11NfkBFRXgZQ2aS2CTRGuEVNCzJZAvjQvTtSH/NIWQUb46dtPHgzr8Z27OOnbYyWh69I+vac6E97x5bc8isezj249vLYs3NhBY+uMo5eNildoRv4HWvvy5UbtP3VlYWvg+opm/ypVFjODf/QIKPcDKCySW0TaIxw85acmvqYlUyD9gUb0TMh1XHHT9sY/2fd0qopmxzpxImPxt//8LRk2fKmot9iW1vacjcs3pi7Y9VF8fqzS2Ok9N2o9Jbwj28YU9aYhXqhlJt12bd7diZlkz7/9R+lTSY+NMiIKC8DqGyCQGMEq8/nI4vdNLc+fmbqYxazo7Mz1q05P9IONk77RPp7vqRpVN22WLjykbj97uai2Y2I3gzHTTe25poveSa37pZL4/Vnl0bamaBKqWTZpE9rS1vZWY3p856II89PuVmXQhmHwZZN+mxq+8mA56QcGWREKJtQHqtORrCmqxqSGJ3yBkk9Ez7y4VUJtbrEM6I3+7Jm/YTkpZ9dF9//5yePugHapraf5Da19f5cn8/H/C98Jjm7/vg4c+pbcdzJXSX3P6i0Sqw26c/jG8bEwpUlD93bq+Vvm5Ovf6Xz4HVRbtalUCZnMKtNjnT/bafFSacUbzT37jvvxaa2w4OMcvvNKJsg0BjBut/tKXtX1UJ+39UTOzrvSXXMgeoLNv6yce6gxxp9bBJnnPP7g///u1dOi54Pqj+7+8Xr5yS3fKNzwAe6o7Mzdqz96L9f1LQgOemUE+KMj9XFaROq62PgqUcLN4Hb++7+st7TA2ks19rSlps89drkhLrBvw9e+a+zI+Lskp7zXncS7R39L2/e9dpJseu10n7v/jbHi4iimZ1iTjrlhJL/9sV+JwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAkeh/AOCfMC4IbKAbAAAAAElFTkSuQmCC" alt="REGRIM" style="height:68px;width:auto;">
+  </a>
+  <nav>
+    <a href="#news">NEWS</a>
+    <a href="#works">WORKS</a>
+    <a href="#about">ABOUT</a>
+    <a href="#recruit">RECRUIT</a>
+    <a href="#access">ACCESS</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('ja')">JP</button>
+    <button class="lang-btn" onclick="setLang('ko')">KR</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('zh')">ZH</button>
+    <button class="lang-btn" onclick="setLang('vi')">VI</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="data:image/png;base64,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" alt="REGRIM" style="height:140px;width:auto;filter:drop-shadow(0 0 40px rgba(155,194,0,0.5));">
+    </div>
+    <div class="hero-tagline">
+      <span data-lang-inline="ja" class="active">つくる力で、アニメを支える。</span>
+      <span data-lang-inline="ko">만드는 힘으로, 애니메이션을 지탱한다.</span>
+      <span data-lang-inline="en">Crafting the Power Behind Every Anime.</span>
+      <span data-lang-inline="zh">以制作之力，支撑动画梦想。</span>
+      <span data-lang-inline="vi">Sức mạnh sáng tạo, nâng đỡ hoạt hình.</span>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</div>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="section-header">
+    <div class="section-en">NEWS</div>
+    <div class="section-jp">
+      <span data-lang-inline="ja" class="active">お知らせ</span>
+      <span data-lang-inline="ko">공지사항</span>
+      <span data-lang-inline="en">Latest News</span>
+      <span data-lang-inline="zh">最新资讯</span>
+      <span data-lang-inline="vi">Tin tức mới nhất</span>
+    </div>
+    <div class="accent-line"></div>
+  </div>
+  <div class="news-list">
+    <a class="news-item" href="#">
+      <span class="news-date">2026.07.01</span>
+      <span class="news-tag">WORKS</span>
+      <span class="news-title">
+        <span data-lang-inline="ja" class="active">TVアニメ「PSYREN -サイレン-」総作画監督参加</span>
+        <span data-lang-inline="ko">TV 애니메이션 「PSYREN -사이렌-」 총작화감독 참여</span>
+        <span data-lang-inline="en">Participation as Chief Animation Director in TV Anime "PSYREN -Siren-"</span>
+        <span data-lang-inline="zh">参与TV动画「PSYREN -赛莲-」总作画监督工作</span>
+        <span data-lang-inline="vi">Tham gia với vai trò Giám đốc Hoạt hình Chính trong Anime TV "PSYREN -Siren-"</span>
+      </span>
+    </a>
+    <a class="news-item" href="#">
+      <span class="news-date">2026.01.01</span>
+      <span class="news-tag">INFO</span>
+      <span class="news-title">
+        <span data-lang-inline="ja" class="active">2026年 新年のご挨拶</span>
+        <span data-lang-inline="ko">2026년 새해 인사</span>
+        <span data-lang-inline="en">Happy New Year 2026</span>
+        <span data-lang-inline="zh">2026年新年致辞</span>
+        <span data-lang-inline="vi">Chúc mừng năm mới 2026</span>
+      </span>
+    </a>
+    <a class="news-item" href="#">
+      <span class="news-date">2025.04.01</span>
+      <span class="news-tag">RECRUIT</span>
+      <span class="news-title">
+        <span data-lang-inline="ja" class="active">アニメーター・作画スタッフ募集開始</span>
+        <span data-lang-inline="ko">애니메이터·작화 스태프 모집 시작</span>
+        <span data-lang-inline="en">Now Recruiting Animators and Animation Staff</span>
+        <span data-lang-inline="zh">开始招募动画师及作画人员</span>
+        <span data-lang-inline="vi">Bắt đầu tuyển dụng Nhà hoạt hình và Nhân viên hoạt hình</span>
+      </span>
+    </a>
+    <a class="news-item" href="#">
+      <span class="news-date">2022.08.30</span>
+      <span class="news-tag">INFO</span>
+      <span class="news-title">
+        <span data-lang-inline="ja" class="active">株式会社REGRIMを設立しました</span>
+        <span data-lang-inline="ko">주식회사 REGRIM을 설립했습니다</span>
+        <span data-lang-inline="en">REGRIM Inc. has been established</span>
+        <span data-lang-inline="zh">株式会社REGRIM正式成立</span>
+        <span data-lang-inline="vi">Thành lập Công ty REGRIM</span>
+      </span>
+    </a>
+    <div class="center">
+      <a href="#" class="btn-more">
+        <span data-lang-inline="ja" class="active">VIEW MORE</span>
+        <span data-lang-inline="ko">더 보기</span>
+        <span data-lang-inline="en">VIEW MORE</span>
+        <span data-lang-inline="zh">查看更多</span>
+        <span data-lang-inline="vi">XEM THÊM</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="section-header">
+    <div class="section-en">WORKS</div>
+    <div class="section-jp">
+      <span data-lang-inline="ja" class="active">協力作品一覧</span>
+      <span data-lang-inline="ko">협력 작품 목록</span>
+      <span data-lang-inline="en">Collaborative Works</span>
+      <span data-lang-inline="zh">协力作品一览</span>
+      <span data-lang-inline="vi">Danh sách tác phẩm hợp tác</span>
+    </div>
+    <div class="accent-line"></div>
+  </div>
+  <div style="max-width:1000px;margin:0 auto;padding:0 40px 20px;">
+    <p style="font-size:13px;color:var(--gray);margin-bottom:40px;line-height:2;">
+      <span data-lang-inline="ja" class="active">下記は株式会社REGRIMが制作に携わった協力作品の一覧です。</span>
+      <span data-lang-inline="ko">아래는 주식회사REGRIM이 제작에 참여한 협력 작품 목록입니다.</span>
+      <span data-lang-inline="en">The following is a list of works in which REGRIM has participated as a production collaborator.</span>
+      <span data-lang-inline="zh">以下为株式会社REGRIM参与制作的协力作品一览。</span>
+      <span data-lang-inline="vi">Dưới đây là danh sách các tác phẩm mà REGRIM đã tham gia sản xuất với tư cách cộng tác viên.</span>
+    </p>
+    <div id="works-filter" class="works-filter"></div>
+    <table class="works-table">
+      <thead>
+        <tr>
+          <th><span data-lang-inline="ja" class="active">年</span><span data-lang-inline="ko">연도</span><span data-lang-inline="en">Year</span><span data-lang-inline="zh">年份</span><span data-lang-inline="vi">Năm</span></th>
+          <th><span data-lang-inline="ja" class="active">作品名</span><span data-lang-inline="ko">작품명</span><span data-lang-inline="en">Title</span><span data-lang-inline="zh">作品名</span><span data-lang-inline="vi">Tên tác phẩm</span></th>
+          <th><span data-lang-inline="ja" class="active">担当</span><span data-lang-inline="ko">담당</span><span data-lang-inline="en">Role</span><span data-lang-inline="zh">担当</span><span data-lang-inline="vi">Vai trò</span></th>
+        </tr>
+      </thead>
+      <tbody id="works-tbody">
+        <tr data-year="作業中">
+          <td>作業中 <span style="background:var(--accent);color:#000;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:700;vertical-align:middle;">制作中</span></td>
+          <td>サイレン[PSY]</td>
+          <td>総作画監督・作画監督・制作</td>
+        </tr>
+        <tr data-year="2026">
+          <td>2026</td>
+          <td>アオアシ 2nd Season</td>
+          <td>原画・作画グロス</td>
+        </tr>
+        <tr data-year="2026">
+          <td>2026</td>
+          <td>神の庭付き楠木邸</td>
+          <td>総作画監督・作画監督</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>地獄先生ぬ〜べ〜</td>
+          <td>原画・作画監督</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>嘆きの亡霊は引退したい 2期</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>まったく最近の探偵ときたら</td>
+          <td>制作グロス・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>完璧すぎて可愛げがないと婚約破棄された聖女</td>
+          <td>作画・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>淡島百景</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>逃がした魚は大きかったが釣り上げた魚が大きすぎた件</td>
+          <td>制作・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>STAR WARS: ユコの宝物</td>
+          <td>制作・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>29歳独身中堅冒険者の日常</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>最強の職業は勇者でも賢者でもなく鑑定士[仮]らしいですよ？</td>
+          <td>制作・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>DARK MOON ―黒の月―</td>
+          <td>制作グロス・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>転校先の清楚可憐な美少女が、昔男子と思って一緒に遊んだ幼馴染だった件</td>
+          <td>作画・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>最後にひとつだけお願いしてもよろしいでしょうか</td>
+          <td>制作グロス・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>ぐらんぶる 第3期</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2025">
+          <td>2025</td>
+          <td>ドラゴンハート ―霊界探訪記―</td>
+          <td>制作・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>妖怪学校の先生はじめました！</td>
+          <td>総作画監督・作画監督・演出</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>ブルーロック 2nd Season</td>
+          <td>作画グロス</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>ダンダダン</td>
+          <td>原画・LO作監</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>嘆きの亡霊は引退したい</td>
+          <td>総作画監督・作画監督・制作グロス</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>先輩はおとこのこ</td>
+          <td>演出・作画監督・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>バーテンダー 神のグラス</td>
+          <td>制作グロス</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>Unnamed Memory</td>
+          <td>制作・演出</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>SANDA</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>戦隊レッド 異世界で冒険者になる</td>
+          <td>原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>Sランクモンスターのベヒーモスだけど、猫と間違われてエルフ娘の騎士として暮らしてます</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>エルフさんは痩せられない。</td>
+          <td>制作・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>魔神創造伝ワタル</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>顔に出ない柏田さんと顔に出る太田くん</td>
+          <td>制作・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>ドロヘドロ 2期</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>天久鷹央の推理カルテ</td>
+          <td>制作・原画</td>
+        </tr>
+        <tr data-year="2024">
+          <td>2024</td>
+          <td>おしりたんてい</td>
+          <td>制作グロス</td>
+        </tr>
+        <tr data-year="2023">
+          <td>2023</td>
+          <td>ベイブレードX</td>
+          <td>作画グロス・LO作監・原画</td>
+        </tr>
+        <tr data-year="2023">
+          <td>2023</td>
+          <td>シャングリラフロンティア</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2023">
+          <td>2023</td>
+          <td>Drops of God 神の雫</td>
+          <td>制作・原画</td>
+        </tr>
+        <tr data-year="2022">
+          <td>2022</td>
+          <td>ブルーロック</td>
+          <td>作画グロス・原画</td>
+        </tr>
+        <tr data-year="2022">
+          <td>2022</td>
+          <td>リーマンズクラブ</td>
+          <td>制作グロス・原画</td>
+        </tr>
+        <tr data-year="PV">
+          <td>PV</td>
+          <td>プリンセスコネクト！Re:Dive（ゲームPV）</td>
+          <td>映像制作・3DCG</td>
+        </tr>
+        <tr data-year="PV">
+          <td>PV</td>
+          <td>SIREN（サイレン）ゲームPV</td>
+          <td>映像制作・演出</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <div class="section-en">ABOUT</div>
+    <div class="section-jp">
+      <span data-lang-inline="ja" class="active">会社概要</span>
+      <span data-lang-inline="ko">회사 소개</span>
+      <span data-lang-inline="en">About Us</span>
+      <span data-lang-inline="zh">公司简介</span>
+      <span data-lang-inline="vi">Giới thiệu công ty</span>
+    </div>
+    <div class="accent-line"></div>
+  </div>
+  <div class="about-content">
+    <div class="about-text">
+      <h3><span style="color:var(--accent)">つくる人</span>を、<br>支える会社へ。</h3>
+
+      <!-- JP -->
+      <div data-lang="ja" class="active">
+        <p>アニメーションの制作現場には、常に課題がある。人手不足、スケジュール、品質の安定。REGRIMは、その問題を根本から解決するために生まれたOEM専門スタジオです。</p>
+        <p>作画・演出・制作進行まで、高いQCDを一手に担い、原請スタジオが「また頼みたい」と言い続けられる存在を目指します。現在、放映中の国内アニメの約4分の1に参加中。</p>
+        <p style="margin-top:24px;font-weight:700;">代表取締役　朴 才賢</p>
+      </div>
+      <!-- KO -->
+      <div data-lang="ko">
+        <p>애니메이션 제작 현장에는 항상 과제가 있습니다. 인력 부족, 스케줄, 품질의 안정. REGRIM은 그 문제를 근본적으로 해결하기 위해 탄생한 OEM 전문 스튜디오입니다.</p>
+        <p>작화·연출·제작 진행까지, 높은 QCD를 전담하며, 원청 스튜디오가 "또 맡기고 싶다"고 계속 말하게 하는 존재를 목표로 합니다. 현재 방영 중인 국내 애니메이션의 약 4분의 1에 참여 중.</p>
+        <p style="margin-top:24px;font-weight:700;">대표이사　박 재현</p>
+      </div>
+      <!-- EN -->
+      <div data-lang="en">
+        <p>Every production floor has its challenges — staffing, schedules, and consistent quality. REGRIM was built to solve those problems at the root, as a dedicated OEM studio for the animation industry.</p>
+        <p>From animation and direction to production management, we own the QCD so our partners keep coming back. Currently involved in roughly 1 in 4 anime airing in Japan.</p>
+        <p style="margin-top:24px;font-weight:700;">Representative Director　Jaehyun Park (PAKU)</p>
+      </div>
+      <!-- ZH -->
+      <div data-lang="zh">
+        <p>动画制作现场始终面临挑战——人手不足、进度压力和品质稳定性。REGRIM正是为了从根本上解决这些问题而诞生的专业OEM工作室。</p>
+        <p>从作画、演出到制作进行，我们全面掌握QCD，致力于成为制作公司"下次还想委托"的合作伙伴。目前参与约四分之一正在播出的国内动画作品。</p>
+        <p style="margin-top:24px;font-weight:700;">代表取締役　朴 才賢</p>
+      </div>
+      <!-- VI -->
+      <div data-lang="vi">
+        <p>Mỗi sàn sản xuất đều có thách thức — nhân lực, lịch trình và chất lượng ổn định. REGRIM được xây dựng để giải quyết những vấn đề đó từ gốc rễ, là studio OEM chuyên dụng cho ngành hoạt hình.</p>
+        <p>Từ hoạt hình, đạo diễn đến quản lý sản xuất, chúng tôi nắm toàn bộ QCD để các đối tác tiếp tục quay lại. Hiện tham gia vào khoảng 1/4 anime đang phát sóng tại Nhật Bản.</p>
+        <p style="margin-top:24px;font-weight:700;">Giám đốc điều hành　Park Jaehyun (PAKU)</p>
+      </div>
+    </div>
+
+    <div class="about-info">
+      <table>
+        <tr>
+          <td>
+            <span data-lang-inline="ja" class="active">会社名</span>
+            <span data-lang-inline="ko">회사명</span>
+            <span data-lang-inline="en">Company</span>
+            <span data-lang-inline="zh">公司名称</span>
+            <span data-lang-inline="vi">Tên công ty</span>
+          </td>
+          <td>株式会社REGRIM</td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-inline="ja" class="active">設立</span>
+            <span data-lang-inline="ko">설립</span>
+            <span data-lang-inline="en">Founded</span>
+            <span data-lang-inline="zh">成立时间</span>
+            <span data-lang-inline="vi">Thành lập</span>
+          </td>
+          <td>
+            <span data-lang-inline="ja" class="active">令和4年8月30日</span>
+            <span data-lang-inline="ko">2022년 8월 30일</span>
+            <span data-lang-inline="en">August 30, 2022</span>
+            <span data-lang-inline="zh">2022年8月30日</span>
+            <span data-lang-inline="vi">30 tháng 8, 2022</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-inline="ja" class="active">所在地</span>
+            <span data-lang-inline="ko">소재지</span>
+            <span data-lang-inline="en">Address</span>
+            <span data-lang-inline="zh">所在地</span>
+            <span data-lang-inline="vi">Địa chỉ</span>
+          </td>
+          <td>
+            <span data-lang-inline="ja" class="active">東京都新宿区高田馬場３丁目２０番１１号 第二林ビル101</span>
+            <span data-lang-inline="ko">도쿄도 신주쿠구 다카다노바바 3-20-11 다이니하야시빌딩 101</span>
+            <span data-lang-inline="en">Daini Hayashi Bldg. 101, 3-20-11 Takadanobaba, Shinjuku-ku, Tokyo</span>
+            <span data-lang-inline="zh">东京都新宿区高田马场3丁目20番11号 第二林大厦101室</span>
+            <span data-lang-inline="vi">Daini Hayashi Bldg. 101, 3-20-11 Takadanobaba, Shinjuku-ku, Tokyo</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-inline="ja" class="active">資本金</span>
+            <span data-lang-inline="ko">자본금</span>
+            <span data-lang-inline="en">Capital</span>
+            <span data-lang-inline="zh">注册资本</span>
+            <span data-lang-inline="vi">Vốn điều lệ</span>
+          </td>
+          <td>3,000<span data-lang-inline="ja" class="active">万円</span><span data-lang-inline="ko">만엔</span><span data-lang-inline="en"> million yen</span><span data-lang-inline="zh">万日元</span><span data-lang-inline="vi"> triệu yên</span></td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-inline="ja" class="active">事業内容</span>
+            <span data-lang-inline="ko">사업 내용</span>
+            <span data-lang-inline="en">Business</span>
+            <span data-lang-inline="zh">业务内容</span>
+            <span data-lang-inline="vi">Lĩnh vực</span>
+          </td>
+          <td>
+            <span data-lang-inline="ja" class="active">アニメーションを中心とした各種映像の制作・デジタルコンテンツの制作・AIを活用したアニメーション制作ソリューションの開発・提供</span>
+            <span data-lang-inline="ko">애니메이션을 중심으로 한 각종 영상 제작·디지털 콘텐츠 제작·AI를 활용한 애니메이션 제작 솔루션 개발·제공</span>
+            <span data-lang-inline="en">Animation &amp; video production, Digital content creation, AI-powered animation production solution development &amp; provision</span>
+            <span data-lang-inline="zh">以动画为中心的各类影像制作・数字内容制作・基于AI的动画制作解决方案开发与提供</span>
+            <span data-lang-inline="vi">Sản xuất phim hoạt hình và video, Sản xuất nội dung số, Phát triển &amp; cung cấp giải pháp sản xuất hoạt hình bằng AI</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-inline="ja" class="active">主な取引先</span>
+            <span data-lang-inline="ko">주요 거래처</span>
+            <span data-lang-inline="en">Key Clients</span>
+            <span data-lang-inline="zh">主要合作方</span>
+            <span data-lang-inline="vi">Đối tác chính</span>
+          </td>
+          <td>株式会社オー・エル・エム / JUVENAGE株式会社 / 株式会社マカリア / project No.9 INC / 株式会社サイエンスSARU / 株式会社C2C / 株式会社トムス・エンタテインメント / 株式会社ZERO-G / 株式会社TROYCA / 株式会社サテライト / 株式会社スタジオフラッド / 株式会社MAPPA / スタジオKAI / 株式会社ライデンフィルム / 株式会社リーベル</td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-inline="ja" class="active">代表取締役</span>
+            <span data-lang-inline="ko">대표이사</span>
+            <span data-lang-inline="en">CEO</span>
+            <span data-lang-inline="zh">代表取締役</span>
+            <span data-lang-inline="vi">Giám đốc điều hành</span>
+          </td>
+          <td>朴 才賢 (PAKU)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ACCESS -->
+<section id="access" style="background:#fff;padding:80px 60px;">
+  <div class="section-header">
+    <div class="section-en">ACCESS</div>
+    <div class="section-jp">
+      <span data-lang-inline="ja" class="active">アクセス</span>
+      <span data-lang-inline="ko">오시는 길</span>
+      <span data-lang-inline="en">Access</span>
+      <span data-lang-inline="zh">交通指南</span>
+      <span data-lang-inline="vi">Hướng dẫn đường đi</span>
+    </div>
+    <div class="accent-line"></div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;">
+    <div style="width:100%;height:380px;margin-bottom:32px;border:1px solid #e0e0e0;overflow:hidden;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.0379381860052!2d139.69552915202243!3d35.7136625762219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d362f066223%3A0x905d2a1cf0de4cb9!2z44CSMTY5LTAwNzUg5p2x5Lqs6YO95paw5a6_5Yy66auY55Sw6aas5aC077yT5LiB55uu77yS77yQ4oiS77yR77yRIOesrOS6jOael-ODk-ODqw!5e0!3m2!1sja!2sjp!4v1670965114889!5m2!1sja!2sjp"
+        width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.2em;color:#888;font-weight:700;margin-bottom:12px;">
+          <span data-lang-inline="ja" class="active">住所</span>
+          <span data-lang-inline="ko">주소</span>
+          <span data-lang-inline="en">ADDRESS</span>
+          <span data-lang-inline="zh">地址</span>
+          <span data-lang-inline="vi">ĐỊA CHỈ</span>
+        </div>
+        <p style="font-size:14px;line-height:2;">
+          <span data-lang-inline="ja" class="active">〒169-0075<br>東京都新宿区高田馬場３丁目２０番１１号<br>第二林ビル101</span>
+          <span data-lang-inline="ko">〒169-0075<br>도쿄도 신주쿠구 다카다노바바 3-20-11<br>다이니하야시빌딩 101</span>
+          <span data-lang-inline="en">Daini Hayashi Bldg. 101<br>3-20-11 Takadanobaba, Shinjuku-ku<br>Tokyo 169-0075, Japan</span>
+          <span data-lang-inline="zh">〒169-0075<br>东京都新宿区高田马场3丁目20番11号<br>第二林大厦101室</span>
+          <span data-lang-inline="vi">Daini Hayashi Bldg. 101<br>3-20-11 Takadanobaba, Shinjuku-ku<br>Tokyo 169-0075, Nhật Bản</span>
+        </p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.2em;color:#888;font-weight:700;margin-bottom:12px;">
+          <span data-lang-inline="ja" class="active">交通アクセス</span>
+          <span data-lang-inline="ko">교통 안내</span>
+          <span data-lang-inline="en">TRANSPORT</span>
+          <span data-lang-inline="zh">交通方式</span>
+          <span data-lang-inline="vi">PHƯƠNG TIỆN</span>
+        </div>
+        <p style="font-size:14px;line-height:2.4;">
+          🚃
+          <span data-lang-inline="ja" class="active">JR山手線「高田馬場」早稲田口 徒歩8分</span>
+          <span data-lang-inline="ko">JR야마노테선 「다카다노바바」 와세다 출구 도보 8분</span>
+          <span data-lang-inline="en">JR Yamanote Line "Takadanobaba" Waseda Exit, 8 min walk</span>
+          <span data-lang-inline="zh">JR山手线「高田马场」早稻田出口 步行8分钟</span>
+          <span data-lang-inline="vi">JR Yamanote Line "Takadanobaba" Cổng Waseda, đi bộ 8 phút</span>
+          <br>🚇
+          <span data-lang-inline="ja" class="active">東京メトロ東西線「高田馬場」出口1 徒歩8分</span>
+          <span data-lang-inline="ko">도쿄 메트로 도자이선 「다카다노바바」 출구1 도보 8분</span>
+          <span data-lang-inline="en">Tokyo Metro Tozai Line "Takadanobaba" Exit 1, 8 min walk</span>
+          <span data-lang-inline="zh">东京地铁东西线「高田马场」出口1 步行8分钟</span>
+          <span data-lang-inline="vi">Tàu điện ngầm Tokyo Metro Tozai Line "Takadanobaba" Lối ra 1, đi bộ 8 phút</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUIT -->
+<section id="recruit">
+  <div class="section-header">
+    <div class="section-en">RECRUIT</div>
+    <div class="section-jp">
+      <span data-lang-inline="ja" class="active">採用情報</span>
+      <span data-lang-inline="ko">채용 정보</span>
+      <span data-lang-inline="en">Join Us</span>
+      <span data-lang-inline="zh">招聘信息</span>
+      <span data-lang-inline="vi">Tuyển dụng</span>
+    </div>
+    <div class="accent-line"></div>
+  </div>
+  <div class="recruit-content">
+    <p class="recruit-intro">
+      <span data-lang-inline="ja" class="active">REGRIMでは、共に成長できるアニメーター・スタッフを募集しています。<br>日韓のアニメーション制作に情熱を持つ方のご応募をお待ちしております。</span>
+      <span data-lang-inline="ko">REGRIM에서는 함께 성장할 수 있는 애니메이터·스태프를 모집합니다.<br>일한 애니메이션 제작에 열정을 가진 분의 지원을 기다리고 있습니다.</span>
+      <span data-lang-inline="en">REGRIM is looking for animators and staff who can grow together.<br>We welcome applications from those passionate about Japan-Korea animation production.</span>
+      <span data-lang-inline="zh">REGRIM正在招募能够共同成长的动画师和工作人员。<br>欢迎对日韩动画制作充满热情的人才加入。</span>
+      <span data-lang-inline="vi">REGRIM đang tìm kiếm các nhà hoạt hình và nhân viên có thể cùng phát triển.<br>Chúng tôi chào đón những người đam mê sản xuất hoạt hình Nhật-Hàn.</span>
+    </p>
+    <div class="recruit-positions" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="recruit-card">
+        <div class="recruit-badge">
+          <span data-lang-inline="ja" class="active">常時募集中</span>
+          <span data-lang-inline="ko">상시 모집중</span>
+          <span data-lang-inline="en">ALWAYS OPEN</span>
+          <span data-lang-inline="zh">长期招募</span>
+          <span data-lang-inline="vi">LUÔN TUYỂN</span>
+        </div>
+        <h4>
+          <span data-lang-inline="ja" class="active">制作進行</span>
+          <span data-lang-inline="ko">제작 진행</span>
+          <span data-lang-inline="en">Production Manager</span>
+          <span data-lang-inline="zh">制作进行</span>
+          <span data-lang-inline="vi">Quản lý Sản xuất</span>
+        </h4>
+        <p style="margin-bottom:16px;">
+          <span data-lang-inline="ja" class="active">アニメーション制作の進行管理を担当していただきます。未経験者も歓迎。</span>
+          <span data-lang-inline="ko">애니메이션 제작의 진행 관리를 담당합니다. 미경험자도 환영.</span>
+          <span data-lang-inline="en">Responsible for managing animation production schedules. Beginners welcome.</span>
+          <span data-lang-inline="zh">负责动画制作的进度管理工作，欢迎无经验者应聘。</span>
+          <span data-lang-inline="vi">Phụ trách quản lý tiến độ sản xuất hoạt hình. Chào đón người chưa có kinh nghiệm.</span>
+        </p>
+        <div style="border-top:1px solid #e0e0e0;padding-top:14px;font-size:12px;color:#666;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-weight:700;letter-spacing:0.05em;">
+              <span data-lang-inline="ja" class="active">給与</span>
+              <span data-lang-inline="ko">급여</span>
+              <span data-lang-inline="en">Salary</span>
+              <span data-lang-inline="zh">薪资</span>
+              <span data-lang-inline="vi">Lương</span>
+            </span>
+            <span>
+              <span data-lang-inline="ja" class="active">要相談</span>
+              <span data-lang-inline="ko">상담</span>
+              <span data-lang-inline="en">Negotiable</span>
+              <span data-lang-inline="zh">面议</span>
+              <span data-lang-inline="vi">Thỏa thuận</span>
+            </span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-weight:700;letter-spacing:0.05em;">
+              <span data-lang-inline="ja" class="active">条件</span>
+              <span data-lang-inline="ko">조건</span>
+              <span data-lang-inline="en">Terms</span>
+              <span data-lang-inline="zh">条件</span>
+              <span data-lang-inline="vi">Điều kiện</span>
+            </span>
+            <span>
+              <span data-lang-inline="ja" class="active">要相談</span>
+              <span data-lang-inline="ko">상담</span>
+              <span data-lang-inline="en">Negotiable</span>
+              <span data-lang-inline="zh">面议</span>
+              <span data-lang-inline="vi">Thỏa thuận</span>
+            </span>
+          </div>
+        </div>
+        <a href="mailto:info@regrim.jp?subject=%E5%BF%9C%E5%8B%9F%EF%BC%9A%E5%88%B6%E4%BD%9C%E9%80%B2%E8%A1%8C" style="display:block;margin-top:16px;padding:10px;text-align:center;background:var(--accent);color:#000;font-size:12px;font-weight:700;letter-spacing:0.1em;text-decoration:none;border-radius:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          <span data-lang-inline="ja" class="active">応募する →</span>
+          <span data-lang-inline="ko">지원하기 →</span>
+          <span data-lang-inline="en">APPLY →</span>
+          <span data-lang-inline="zh">立即应聘 →</span>
+          <span data-lang-inline="vi">ỨNG TUYỂN →</span>
+        </a>
+      </div>
+
+      <div class="recruit-card">
+        <div class="recruit-badge">
+          <span data-lang-inline="ja" class="active">常時募集中</span>
+          <span data-lang-inline="ko">상시 모집중</span>
+          <span data-lang-inline="en">ALWAYS OPEN</span>
+          <span data-lang-inline="zh">长期招募</span>
+          <span data-lang-inline="vi">LUÔN TUYỂN</span>
+        </div>
+        <h4>
+          <span data-lang-inline="ja" class="active">作画（原画・動画）</span>
+          <span data-lang-inline="ko">작화 (원화·동화)</span>
+          <span data-lang-inline="en">Animation (Key / In-Between)</span>
+          <span data-lang-inline="zh">作画（原画・动画）</span>
+          <span data-lang-inline="vi">Hoạt hình (Key / In-Between)</span>
+        </h4>
+        <p style="margin-bottom:16px;">
+          <span data-lang-inline="ja" class="active">原画・動画スタッフを募集しています。経験者優遇、未経験者も応相談。</span>
+          <span data-lang-inline="ko">원화·동화 스태프를 모집합니다. 경험자 우대, 미경험자도 상담 가능.</span>
+          <span data-lang-inline="en">Recruiting key and in-between animators. Experienced preferred, beginners may inquire.</span>
+          <span data-lang-inline="zh">招募原画及动画人员，优先录用有经验者，无经验者可咨询。</span>
+          <span data-lang-inline="vi">Tuyển dụng nhà hoạt hình chính và xen kẽ. Ưu tiên có kinh nghiệm, người mới có thể liên hệ.</span>
+        </p>
+        <div style="border-top:1px solid #e0e0e0;padding-top:14px;font-size:12px;color:#666;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-weight:700;letter-spacing:0.05em;">
+              <span data-lang-inline="ja" class="active">給与</span>
+              <span data-lang-inline="ko">급여</span>
+              <span data-lang-inline="en">Salary</span>
+              <span data-lang-inline="zh">薪资</span>
+              <span data-lang-inline="vi">Lương</span>
+            </span>
+            <span>
+              <span data-lang-inline="ja" class="active">要相談</span>
+              <span data-lang-inline="ko">상담</span>
+              <span data-lang-inline="en">Negotiable</span>
+              <span data-lang-inline="zh">面议</span>
+              <span data-lang-inline="vi">Thỏa thuận</span>
+            </span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-weight:700;letter-spacing:0.05em;">
+              <span data-lang-inline="ja" class="active">条件</span>
+              <span data-lang-inline="ko">조건</span>
+              <span data-lang-inline="en">Terms</span>
+              <span data-lang-inline="zh">条件</span>
+              <span data-lang-inline="vi">Điều kiện</span>
+            </span>
+            <span>
+              <span data-lang-inline="ja" class="active">要相談</span>
+              <span data-lang-inline="ko">상담</span>
+              <span data-lang-inline="en">Negotiable</span>
+              <span data-lang-inline="zh">面议</span>
+              <span data-lang-inline="vi">Thỏa thuận</span>
+            </span>
+          </div>
+        </div>
+        <a href="mailto:info@regrim.jp?subject=%E5%BF%9C%E5%8B%9F%EF%BC%9A%E4%BD%9C%E7%94%BB%EF%BC%88%E5%8E%9F%E7%94%BB%E3%83%BB%E5%8B%95%E7%94%BB%EF%BC%89" style="display:block;margin-top:16px;padding:10px;text-align:center;background:var(--accent);color:#000;font-size:12px;font-weight:700;letter-spacing:0.1em;text-decoration:none;border-radius:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          <span data-lang-inline="ja" class="active">応募する →</span>
+          <span data-lang-inline="ko">지원하기 →</span>
+          <span data-lang-inline="en">APPLY →</span>
+          <span data-lang-inline="zh">立即应聘 →</span>
+          <span data-lang-inline="vi">ỨNG TUYỂN →</span>
+        </a>
+      </div>
+
+      <div class="recruit-card">
+        <div class="recruit-badge">
+          <span data-lang-inline="ja" class="active">常時募集中</span>
+          <span data-lang-inline="ko">상시 모집중</span>
+          <span data-lang-inline="en">ALWAYS OPEN</span>
+          <span data-lang-inline="zh">长期招募</span>
+          <span data-lang-inline="vi">LUÔN TUYỂN</span>
+        </div>
+        <h4>
+          <span data-lang-inline="ja" class="active">色指定・検査</span>
+          <span data-lang-inline="ko">색지정·검사</span>
+          <span data-lang-inline="en">Color Designer / Checker</span>
+          <span data-lang-inline="zh">色彩设计・检查</span>
+          <span data-lang-inline="vi">Thiết kế màu / Kiểm tra</span>
+        </h4>
+        <p style="margin-bottom:16px;">
+          <span data-lang-inline="ja" class="active">アニメーションの色指定・検査スタッフを募集します。デジタルツールの使用経験があれば尚可。</span>
+          <span data-lang-inline="ko">애니메이션 색지정·검사 스태프를 모집합니다. 디지털 툴 사용 경험자 우대.</span>
+          <span data-lang-inline="en">Recruiting color design and checking staff. Digital tool experience is a plus.</span>
+          <span data-lang-inline="zh">招募色彩设计及检查人员，有数字工具使用经验者优先。</span>
+          <span data-lang-inline="vi">Tuyển dụng nhân viên thiết kế màu và kiểm tra. Ưu tiên có kinh nghiệm dùng công cụ số.</span>
+        </p>
+        <div style="border-top:1px solid #e0e0e0;padding-top:14px;font-size:12px;color:#666;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-weight:700;letter-spacing:0.05em;">
+              <span data-lang-inline="ja" class="active">給与</span>
+              <span data-lang-inline="ko">급여</span>
+              <span data-lang-inline="en">Salary</span>
+              <span data-lang-inline="zh">薪资</span>
+              <span data-lang-inline="vi">Lương</span>
+            </span>
+            <span>
+              <span data-lang-inline="ja" class="active">要相談</span>
+              <span data-lang-inline="ko">상담</span>
+              <span data-lang-inline="en">Negotiable</span>
+              <span data-lang-inline="zh">面议</span>
+              <span data-lang-inline="vi">Thỏa thuận</span>
+            </span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-weight:700;letter-spacing:0.05em;">
+              <span data-lang-inline="ja" class="active">条件</span>
+              <span data-lang-inline="ko">조건</span>
+              <span data-lang-inline="en">Terms</span>
+              <span data-lang-inline="zh">条件</span>
+              <span data-lang-inline="vi">Điều kiện</span>
+            </span>
+            <span>
+              <span data-lang-inline="ja" class="active">要相談</span>
+              <span data-lang-inline="ko">상담</span>
+              <span data-lang-inline="en">Negotiable</span>
+              <span data-lang-inline="zh">面议</span>
+              <span data-lang-inline="vi">Thỏa thuận</span>
+            </span>
+          </div>
+        </div>
+        <a href="mailto:info@regrim.jp?subject=%E5%BF%9C%E5%8B%9F%EF%BC%9A%E8%89%B2%E6%8C%87%E5%AE%9A%E3%83%BB%E6%A4%9C%E6%9F%BB" style="display:block;margin-top:16px;padding:10px;text-align:center;background:var(--accent);color:#000;font-size:12px;font-weight:700;letter-spacing:0.1em;text-decoration:none;border-radius:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          <span data-lang-inline="ja" class="active">応募する →</span>
+          <span data-lang-inline="ko">지원하기 →</span>
+          <span data-lang-inline="en">APPLY →</span>
+          <span data-lang-inline="zh">立即应聘 →</span>
+          <span data-lang-inline="vi">ỨNG TUYỂN →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <div class="section-en">CONTACT</div>
+    <div class="section-jp">
+      <span data-lang-inline="ja" class="active">お問い合わせ</span>
+      <span data-lang-inline="ko">문의</span>
+      <span data-lang-inline="en">Contact Us</span>
+      <span data-lang-inline="zh">联系我们</span>
+      <span data-lang-inline="vi">Liên hệ</span>
+    </div>
+    <div class="accent-line"></div>
+  </div>
+  <div class="contact-content">
+    <p>
+      <span data-lang-inline="ja" class="active">お仕事のご依頼・ご質問は下記フォームまたはメールよりお気軽にお問い合わせください。</span>
+      <span data-lang-inline="ko">업무 의뢰 및 문의는 아래 양식 또는 이메일로 편하게 연락해 주세요.</span>
+      <span data-lang-inline="en">For work inquiries and questions, please contact us via the form below or by email.</span>
+      <span data-lang-inline="zh">工作委托及咨询请通过以下表格或邮件随时与我们联系。</span>
+      <span data-lang-inline="vi">Vui lòng liên hệ với chúng tôi qua biểu mẫu bên dưới hoặc qua email.</span>
+    </p>
+    <p style="margin-bottom:32px;">
+      <a href="mailto:info@regrim.jp" style="color:#9bc200;font-size:16px;font-weight:700;letter-spacing:0.1em;text-decoration:none;border-bottom:1px solid #9bc200;padding-bottom:2px;">info@regrim.jp</a>
+    </p>
+    <!-- Formspree: https://formspree.io/forms/mdaqwwvy/integration -->
+    <form class="contact-form" id="contact-form">
+      <div class="form-group">
+        <label>
+          <span data-lang-inline="ja" class="active">お名前</span>
+          <span data-lang-inline="ko">이름</span>
+          <span data-lang-inline="en">NAME</span>
+          <span data-lang-inline="zh">姓名</span>
+          <span data-lang-inline="vi">HỌ TÊN</span>
+        </label>
+        <input type="text" name="name" required placeholder="REGRIM Inc.">
+      </div>
+      <div class="form-group">
+        <label>
+          <span data-lang-inline="ja" class="active">メールアドレス</span>
+          <span data-lang-inline="ko">이메일</span>
+          <span data-lang-inline="en">EMAIL</span>
+          <span data-lang-inline="zh">邮箱地址</span>
+          <span data-lang-inline="vi">EMAIL</span>
+        </label>
+        <input type="email" name="email" required placeholder="info@example.com">
+      </div>
+      <div class="form-group">
+        <label>
+          <span data-lang-inline="ja" class="active">お問い合わせ種別</span>
+          <span data-lang-inline="ko">문의 유형</span>
+          <span data-lang-inline="en">INQUIRY TYPE</span>
+          <span data-lang-inline="zh">咨询类别</span>
+          <span data-lang-inline="vi">LOẠI YÊU CẦU</span>
+        </label>
+        <select name="type">
+          <option value="work_ja">お仕事のご依頼</option>
+          <option value="work_ko">업무 의뢰</option>
+          <option value="work_en">Work Inquiry</option>
+          <option value="recruit">採用について</option>
+          <option value="other">その他 / Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>
+          <span data-lang-inline="ja" class="active">メッセージ</span>
+          <span data-lang-inline="ko">메시지</span>
+          <span data-lang-inline="en">MESSAGE</span>
+          <span data-lang-inline="zh">留言</span>
+          <span data-lang-inline="vi">TIN NHẮN</span>
+        </label>
+        <textarea name="message" required placeholder="..."></textarea>
+      </div>
+      <div id="form-status" style="display:none;margin-bottom:16px;padding:12px 16px;border-radius:4px;font-size:13px;letter-spacing:0.05em;"></div>
+      <button class="btn-submit" type="submit" id="form-submit-btn">
+        <span data-lang-inline="ja" class="active">送 信</span>
+        <span data-lang-inline="ko">보내기</span>
+        <span data-lang-inline="en">SEND</span>
+        <span data-lang-inline="zh">发送</span>
+        <span data-lang-inline="vi">GỬI</span>
+      </button>
+    </form>
+    <script>
+    (function(){
+      var FORMSPREE_ID = 'mdaqwwvy';
+      var form = document.getElementById('contact-form');
+      var btn = document.getElementById('form-submit-btn');
+      var status = document.getElementById('form-status');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(FORMSPREE_ID === 'YOUR_FORM_ID'){
+          // Formspree未設定の場合はmailtoで代替
+          var name = form.name.value;
+          var email = form.email.value;
+          var msg = form.message.value;
+          var subject = encodeURIComponent('【REGRIMお問い合わせ】' + form.type.value);
+          var body = encodeURIComponent('お名前: ' + name + '\nメール: ' + email + '\n\n' + msg);
+          window.location.href = 'mailto:info@regrim.jp?subject=' + subject + '&body=' + body;
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = '送信中...';
+        status.style.display = 'none';
+        fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+          method: 'POST',
+          headers: {'Accept':'application/json'},
+          body: new FormData(form)
+        }).then(function(r){ return r.json(); }).then(function(data){
+          if(data.ok){
+            status.style.background = 'rgba(155,194,0,0.15)';
+            status.style.color = '#9bc200';
+            status.style.border = '1px solid rgba(155,194,0,0.4)';
+            status.textContent = '✓ 送信しました。ありがとうございます！';
+            status.style.display = 'block';
+            form.reset();
+          } else {
+            throw new Error('error');
+          }
+        }).catch(function(){
+          status.style.background = 'rgba(255,50,50,0.1)';
+          status.style.color = '#ff6b6b';
+          status.style.border = '1px solid rgba(255,50,50,0.3)';
+          status.textContent = '送信に失敗しました。info@regrim.jp へ直接ご連絡ください。';
+          status.style.display = 'block';
+        }).finally(function(){
+          btn.disabled = false;
+          btn.textContent = '送 信';
+        });
+      });
+    })();
+    </script>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="data:image/png;base64,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" alt="REGRIM" style="height:48px;width:auto;">
+      </div>
+      <div class="footer-desc">
+        <span data-lang-inline="ja" class="active">株式会社REGRIM<br>東京都新宿区高田馬場３丁目２０番１１号<br>第二林ビル101</span>
+        <span data-lang-inline="ko">주식회사 REGRIM<br>도쿄도 신주쿠구 다카다노바바 3-20-11<br>다이니하야시빌딩 101</span>
+        <span data-lang-inline="en">REGRIM Inc.<br>Daini Hayashi Bldg. 101, 3-20-11 Takadanobaba<br>Shinjuku-ku, Tokyo</span>
+        <span data-lang-inline="zh">株式会社REGRIM<br>东京都新宿区高田马场3丁目20番11号<br>第二林大厦101室</span>
+        <span data-lang-inline="vi">REGRIM Inc.<br>Daini Hayashi Bldg. 101, 3-20-11 Takadanobaba<br>Shinjuku-ku, Tokyo</span>
+      </div>
+      <div style="margin-top:12px;margin-bottom:4px;">
+        <a href="mailto:info@regrim.jp" style="color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;letter-spacing:0.05em;">info@regrim.jp</a>
+      </div>
+      <div class="footer-sns">
+        <a href="https://x.com/REGRIM_" class="sns-icon" target="_blank" rel="noopener noreferrer">𝕏</a>
+        <a href="#" class="sns-icon">in</a>
+        <a href="#" class="sns-icon">▶</a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <h5>NAVIGATION</h5>
+      <a href="#news">NEWS</a>
+      <a href="#works">WORKS</a>
+      <a href="#about">ABOUT</a>
+      <a href="#recruit">RECRUIT</a>
+      <a href="#access">ACCESS</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+    <div class="footer-nav">
+      <h5>LANGUAGE</h5>
+      <a href="#" onclick="setLang('ja')">日本語</a>
+      <a href="#" onclick="setLang('ko')">한국어</a>
+      <a href="#" onclick="setLang('en')">English</a>
+      <a href="#" onclick="setLang('zh')">中文</a>
+      <a href="#" onclick="setLang('vi')">Tiếng Việt</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2022–2026 REGRIM Inc. All Rights Reserved.
+  </div>
+</footer>
+
+<button id="back-to-top" title="ページトップへ">↑</button>
+
+<script>
+// ===== LANGUAGE SWITCHER =====
+function setLang(lang) {
+  // Update buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  const langs = ['ja','ko','en','zh','vi'];
+  const idx = langs.indexOf(lang);
+  if (idx >= 0) document.querySelectorAll('.lang-btn')[idx].classList.add('active');
+
+  // Update block elements
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.classList.remove('active');
+    if (el.getAttribute('data-lang') === lang) el.classList.add('active');
+  });
+
+  // Update inline elements
+  document.querySelectorAll('[data-lang-inline]').forEach(el => {
+    el.classList.remove('active');
+    if (el.getAttribute('data-lang-inline') === lang) el.classList.add('active');
+  });
+
+  // Update html lang
+  document.documentElement.lang = lang === 'ko' ? 'ko' : lang === 'en' ? 'en' : lang === 'zh' ? 'zh' : lang === 'vi' ? 'vi' : 'ja';
+}
+
+// ===== HERO SLIDESHOW =====
+const slides = document.querySelectorAll('.hero-slide');
+let current = 0;
+setInterval(() => {
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+}, 4000);
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(id);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+<script>
+(function(){
+  var canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var ACCENT = '#9bc200';
+  var W, H, particles = [], bands = [];
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', function(){ resize(); initParticles(); });
+
+  function rnd(a, b) { return Math.random() * (b - a) + a; }
+
+  function initParticles() {
+    particles = [];
+    var count = Math.min(90, Math.floor(W * H / 12000));
+    for (var i = 0; i < count; i++) {
+      particles.push({x:rnd(0,W),y:rnd(0,H),vx:rnd(-0.12,0.12),vy:rnd(-0.55,-0.1),r:rnd(0.8,2.2),alpha:rnd(0.1,0.65),accent:Math.random()>0.72});
+    }
+    bands = [];
+    for (var j = 0; j < 6; j++) {
+      bands.push({x:rnd(0,W), speed:rnd(0.25,0.7), alpha:rnd(0.018,0.05)});
+    }
+  }
+  initParticles();
+
+  var frame = 0;
+  function draw() {
+    frame++;
+    ctx.clearRect(0,0,W,H);
+
+    // BG gradient
+    var bg = ctx.createLinearGradient(0,0,W,H);
+    bg.addColorStop(0,'#06060f'); bg.addColorStop(0.5,'#0c0c1a'); bg.addColorStop(1,'#06060f');
+    ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+
+    // Grid
+    ctx.strokeStyle = 'rgba(155,194,0,0.022)'; ctx.lineWidth = 1;
+    var cell = 80;
+    for (var gx = 0; gx <= W; gx += cell) { ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke(); }
+    for (var gy = 0; gy <= H; gy += cell) { ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke(); }
+
+    // Light bands
+    bands.forEach(function(b){
+      b.x += b.speed; if(b.x > W+30) b.x = -30;
+      var lg = ctx.createLinearGradient(b.x-30,0,b.x+30,0);
+      lg.addColorStop(0,'transparent'); lg.addColorStop(0.5,'rgba(155,194,0,'+b.alpha+')'); lg.addColorStop(1,'transparent');
+      ctx.fillStyle=lg; ctx.fillRect(b.x-30,0,60,H);
+    });
+
+    // Center glow
+    var cx=W/2, cy=H/2;
+    var glow=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*0.42);
+    glow.addColorStop(0,'rgba(155,194,0,0.055)'); glow.addColorStop(1,'transparent');
+    ctx.fillStyle=glow; ctx.fillRect(0,0,W,H);
+
+    // Particles
+    particles.forEach(function(p){
+      ctx.globalAlpha = p.alpha*(0.7+0.3*Math.sin(frame*0.018+p.x*0.01));
+      ctx.fillStyle = p.accent ? ACCENT : 'rgba(255,255,255,0.9)';
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.y<-5){p.y=H+5;p.x=rnd(0,W);}
+      if(p.x<-5) p.x=W+5; if(p.x>W+5) p.x=-5;
+    });
+    ctx.globalAlpha=1;
+
+    // Corner brackets
+    var cs = Math.min(70,W*0.055);
+    var ca = 0.18+0.06*Math.sin(frame*0.025);
+    ctx.strokeStyle='rgba(155,194,0,'+ca+')'; ctx.lineWidth=1.5;
+    var m=22;
+    ctx.beginPath(); ctx.moveTo(m,m+cs); ctx.lineTo(m,m); ctx.lineTo(m+cs,m); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W-m-cs,m); ctx.lineTo(W-m,m); ctx.lineTo(W-m,m+cs); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(m,H-m-cs); ctx.lineTo(m,H-m); ctx.lineTo(m+cs,H-m); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W-m-cs,H-m); ctx.lineTo(W-m,H-m); ctx.lineTo(W-m,H-m-cs); ctx.stroke();
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<script>
+// ===== LOADING SCREEN =====
+window.addEventListener('load', function() {
+  var ls = document.getElementById('loading-screen');
+  if (!ls) return;
+  setTimeout(function() {
+    ls.classList.add('hide');
+    setTimeout(function() { ls.style.display='none'; }, 800);
+  }, 1000);
+});
+
+// ===== BACK TO TOP =====
+var btt = document.getElementById('back-to-top');
+if (btt) {
+  window.addEventListener('scroll', function() {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  });
+  btt.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// ===== WORKS YEAR FILTER =====
+(function() {
+  var rows = Array.from(document.querySelectorAll('#works-tbody tr'));
+  var fc = document.getElementById('works-filter');
+  if (!fc || !rows.length) return;
+
+  // Collect unique years (exclude 作業中)
+  var years = [];
+  rows.forEach(function(r) {
+    var y = (r.getAttribute('data-year') || '').trim();
+    if (y && y !== '作業中' && years.indexOf(y) === -1) years.push(y);
+  });
+  years.sort(function(a, b) {
+    var na = parseInt(a), nb = parseInt(b);
+    if (!isNaN(na) && !isNaN(nb)) return nb - na;
+    return isNaN(na) ? 1 : -1;
+  });
+
+  var activeYear = null;
+
+  function applyFilter() {
+    rows.forEach(function(r) {
+      var y = (r.getAttribute('data-year') || '').trim();
+      r.classList.toggle('wf-hidden', activeYear !== null && y !== activeYear);
+    });
+  }
+
+  years.forEach(function(y) {
+    var b = document.createElement('button');
+    b.className = 'filter-btn';
+    b.textContent = y;
+    b.addEventListener('click', function() {
+      if (activeYear === y) {
+        activeYear = null;
+        fc.querySelectorAll('.filter-btn').forEach(function(x){ x.classList.remove('active'); });
+      } else {
+        activeYear = y;
+        fc.querySelectorAll('.filter-btn').forEach(function(x){ x.classList.remove('active'); });
+        b.classList.add('active');
+      }
+      applyFilter();
+    });
+    fc.appendChild(b);
+  });
+})();
+</script>
+
+</body>
+</html>
