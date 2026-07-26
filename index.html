@@ -1452,12 +1452,10 @@
           <span data-lang-inline="zh">咨询类别</span>
           <span data-lang-inline="vi">LOẠI YÊU CẦU</span>
         </label>
-        <select name="type">
-          <option value="work_ja">お仕事のご依頼</option>
-          <option value="work_ko">업무 의뢰</option>
-          <option value="work_en">Work Inquiry</option>
+        <select name="type" id="contact-type-select">
+          <option value="work">お仕事のご依頼</option>
           <option value="recruit">採用について</option>
-          <option value="other">その他 / Other</option>
+          <option value="other">その他</option>
         </select>
       </div>
       <div class="form-group">
@@ -1581,6 +1579,35 @@
 <button id="back-to-top" title="ページトップへ">↑</button>
 
 <script>
+// ===== CONTACT TYPE OPTIONS (per language) =====
+var contactTypeOptions = {
+  ja: [
+    { value: 'work', text: 'お仕事のご依頼' },
+    { value: 'recruit', text: '採用について' },
+    { value: 'other', text: 'その他' }
+  ],
+  ko: [
+    { value: 'work', text: '업무 의뢰' },
+    { value: 'recruit', text: '채용 문의' },
+    { value: 'other', text: '기타' }
+  ],
+  en: [
+    { value: 'work', text: 'Work Inquiry' },
+    { value: 'recruit', text: 'Recruitment' },
+    { value: 'other', text: 'Other' }
+  ],
+  zh: [
+    { value: 'work', text: '工作委托' },
+    { value: 'recruit', text: '招聘咨询' },
+    { value: 'other', text: '其他' }
+  ],
+  vi: [
+    { value: 'work', text: 'Yêu cầu công việc' },
+    { value: 'recruit', text: 'Tuyển dụng' },
+    { value: 'other', text: 'Khác' }
+  ]
+};
+
 // ===== LANGUAGE SWITCHER =====
 function setLang(lang) {
   // Update buttons
@@ -1600,6 +1627,20 @@ function setLang(lang) {
     el.classList.remove('active');
     if (el.getAttribute('data-lang-inline') === lang) el.classList.add('active');
   });
+
+  // Update contact type select options
+  var sel = document.getElementById('contact-type-select');
+  if (sel && contactTypeOptions[lang]) {
+    var currentVal = sel.value;
+    sel.innerHTML = '';
+    contactTypeOptions[lang].forEach(function(opt) {
+      var o = document.createElement('option');
+      o.value = opt.value;
+      o.text = opt.text;
+      sel.appendChild(o);
+    });
+    if (currentVal) sel.value = currentVal;
+  }
 
   // Update html lang
   document.documentElement.lang = lang === 'ko' ? 'ko' : lang === 'en' ? 'en' : lang === 'zh' ? 'zh' : lang === 'vi' ? 'vi' : 'ja';
