@@ -691,6 +691,18 @@
     color: #000; font-weight: 700;
   }
   .works-table tr.wf-hidden { display: none !important; }
+  /* Works modal */
+  #works-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;align-items:center;justify-content:center;padding:20px}
+  #works-modal-overlay.open{display:flex}
+  #works-modal{background:#111;border:1px solid #222;border-radius:8px;max-width:500px;width:100%;padding:36px 40px;position:relative;animation:wModalIn .2s ease}
+  @keyframes wModalIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+  #works-modal-close{position:absolute;top:14px;right:18px;background:none;border:none;color:var(--gray);font-size:26px;cursor:pointer;line-height:1;padding:0}
+  #works-modal-close:hover{color:var(--accent)}
+  #works-modal-year{font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:12px}
+  #works-modal-title{font-size:20px;color:#fff;line-height:1.55;margin-bottom:22px}
+  #works-modal-role{border-top:1px solid #222;padding-top:18px;display:flex;flex-wrap:wrap;gap:6px}
+  #works-modal-role span{display:inline-block;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:3px;padding:4px 10px;font-size:12px;color:var(--gray)}
+  #works-tbody tr{cursor:pointer;transition:background .15s}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"株式会REGRIM","alternateName":"REGRIM","url":"https://www.regrim.jp","logo":"https://www.regrim.jp/ogp.jpg","description":"OEMアニメーション制作スタジオ / Anime Production Studio","address":{"@type":"PostalAddress","addressCountry":"JP"}}</script></head>
 <body>
@@ -1944,6 +1956,24 @@ if (btt) {
     fc.appendChild(b);
   });
   applyFilter();
+})();
+</script>
+<!-- Works modal -->
+<div id="works-modal-overlay" onclick="if(event.target===this)closeWorksModal()"><div id="works-modal"><button id="works-modal-close" onclick="closeWorksModal()" aria-label="Close">&#215;</button><div id="works-modal-year"></div><div id="works-modal-title"></div><div id="works-modal-role"></div></div></div>
+<script>
+(function(){
+  var o=document.getElementById('works-modal-overlay');
+  var t=document.getElementById('works-tbody');
+  if(t){t.addEventListener('click',function(e){
+    var r=e.target.closest('tr');if(!r)return;
+    var c=r.querySelectorAll('td');if(c.length<3)return;
+    document.getElementById('works-modal-year').textContent=c[0].textContent.trim();
+    document.getElementById('works-modal-title').textContent=c[1].textContent.trim();
+    document.getElementById('works-modal-role').innerHTML=c[2].textContent.trim().split('・').map(function(s){return'<span>'+s+'</span>';}).join('');
+    o.classList.add('open');document.body.style.overflow='hidden';
+  });}
+  window.closeWorksModal=function(){o.classList.remove('open');document.body.style.overflow='';};
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeWorksModal();});
 })();
 </script>
 
